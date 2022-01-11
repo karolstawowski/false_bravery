@@ -45,25 +45,25 @@ generateImage(random.choice(champions), random_boots, boots_items[random_boots][
               summoner_spells[random_summoner_spells[0]],
               summoner_spells[random_summoner_spells[1]])
 
-password = open('bot_password.txt', 'r')
+password = open('bot_password.txt', 'r').read()
 
-# @client.event
-# async def on_ready():
-#     print('We have logged in as {0.user}'.format(client))
-#
-#
-# @client.event
-# async def on_message(message):
-#     if message.author == client.user:
-#         return
-#
-#     if message.content.startswith('$hello'):
-#         # random_champion = randomizeChampion(champions)
-#         # random_boots = randomizeBoots(boots_items)
-#         # description = f'Champion: {random_champion} \n Items: \n{random_boots[1]} - {random_boots[2]}'
-#         # imageURL = f"http://ddragon.leagueoflegends.com/cdn/12.1.1/img/champion/{random_champion}.png"
-#         # embed = discord.Embed(title=random_champion, description=description)
-#         # embed.set_image(url=imageURL)
-#         await message.channel.send(file=discord.File("./assets/ready.png"))
-#
-# client.run(password)
+@client.event
+async def on_ready():
+    print('We have logged in as {0.user}'.format(client))
+
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('$hello'):
+        # random_champion = randomizeChampion(champions)
+        # random_boots = randomizeBoots(boots_items)
+        # description = f'Champion: {random_champion} \n Items: \n{random_boots[1]} - {random_boots[2]}'
+        # imageURL = f"http://ddragon.leagueoflegends.com/cdn/12.1.1/img/champion/{random_champion}.png"
+        # embed = discord.Embed(title=random_champion, description=description)
+        # embed.set_image(url=imageURL)
+        await message.channel.send(file=discord.File("./assets/ready.png"))
+
+client.run(password)
