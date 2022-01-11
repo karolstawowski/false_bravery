@@ -10,7 +10,7 @@ def getChampionsFromApi(lol_version):
     resp_en = response_en.json()['data']
 
     for id in resp_en:
-        champions.append(resp_en[id]['name'])
+        champions.append(id)
 
     # print(champions)
 

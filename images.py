@@ -1,33 +1,40 @@
 from PIL import Image, ImageDraw, ImageFont
 import urllib.request
+import random
+import os
 
 
 def createChampionLabel(champion, image):
     draw_image = ImageDraw.Draw(image)
-    # font = ImageFont.truetype(<font-file>, <font-size>)
     font = ImageFont.truetype("./assets/Roboto-Regular.ttf", 20)
-    # draw.text((x, y),"Sample Text",(r,g,b))
     w, h = draw_image.textsize(f"{champion}", font=font)
     draw_image.text(((120 - w) / 2 + 20, 150), f"{champion}", (255, 255, 255), font=font)
 
 
 def getImageFromApi(source, source_type):
+    if os.path.isfile(f'./temp/{source}.png'):
+        return Image.open(f'./temp/{source}.png')
     urllib.request.urlretrieve(f'http://ddragon.leagueoflegends.com/cdn/12.1.1/img/{source_type}/{source}.png',
-                               f'./assets/{source}.png')
-    return Image.open(f'./assets/{source}.png')
+                               f'./temp/{source}.png')
+    return Image.open(f'./temp/{source}.png')
 
 
 def generateTemplateImage(path):
-    image = Image.new('RGB', (320, 644), (80, 80, 80))  # 296
+    if os.path.isfile(f'{path}'):
+        return Image.open(f'{path}')
+    image = Image.new('RGB', (360, 644), (80, 80, 80))
     image.save(f'{path}')
     return image
 
 
 def createSkillOrderLabel(template_image):
+    skills = ['Q', 'W', 'E']
+    random.shuffle(skills)
+    random.shuffle(skills)
     draw_image = ImageDraw.Draw(template_image)
     font = ImageFont.truetype("./assets/Roboto-Regular.ttf", 20)
-    draw_image.text((170, 84), "Skill order", (255, 255, 255), font=font)
-    draw_image.text((170, 114), "R > Q > W > E ", (255, 255, 255), font=font)
+    draw_image.text((190, 84), "Skill order", (255, 255, 255), font=font)
+    draw_image.text((190, 114), f"R > {skills[0]} > {skills[1]} > {skills[2]} ", (255, 255, 255), font=font)
 
 
 def createItemLabel(label, template_image, x, y):
@@ -43,7 +50,6 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
     item_image_padding = 10
     champion_image_width = 120
     champion_image_padding = 20
-    # champion_image_width_combined = champion_image_padding + champion_image_width + 10
 
     champion_image = getImageFromApi(champion, 'champion')
     boots_image = getImageFromApi(boots_item, 'item')
@@ -52,7 +58,7 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
         legendary_items_array.append(getImageFromApi(item, 'item'))
     summoner_spell_images = getImageFromApi('spell0', 'sprite')
 
-    template_image = generateTemplateImage("./temp/img.png")
+    template_image = generateTemplateImage("./assets/template.png")
 
     template_image.paste(champion_image, (20, champion_image_padding))
 
@@ -63,11 +69,11 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
 
     template_image.paste(summoner_spell_images.crop((summoner_spell_1.x, summoner_spell_1.y,
                                                      summoner_spell_1.x + summoner_spell_1.w,
-                                                     summoner_spell_1.y + summoner_spell_1.h)), (170, 26))
+                                                     summoner_spell_1.y + summoner_spell_1.h)), (190, 26))
 
     template_image.paste(summoner_spell_images.crop((summoner_spell_2.x, summoner_spell_2.y,
                                                      summoner_spell_2.x + summoner_spell_2.w,
-                                                     summoner_spell_2.y + summoner_spell_2.h)), (242, 26))
+                                                     summoner_spell_2.y + summoner_spell_2.h)), (262, 26))
 
     item = 0
     while item < 4:
@@ -93,4 +99,4 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
     for item in range(len(legendary_items_pl)):
         createItemLabel(legendary_items_pl[item], template_image, 94, 190 + 12 + 24 + 74 * (item + 2))
 
-    template_image.save("./assets/ready.png")
+    template_image.save("./temp/output_file.png")
