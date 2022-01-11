@@ -63,5 +63,4 @@ async def on_message(message):
         await message.reply(file=discord.File("./temp/output_file.png"))
 
 
-
 client.run(password)

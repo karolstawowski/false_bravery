@@ -65,7 +65,7 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
     template_image.paste(boots_image, (20, champion_image_width + champion_image_padding + 10 + 40))
 
     template_image.paste(mythic_item, (
-    20, champion_image_width + champion_image_padding + 10 + item_image_width + item_image_padding + 40))
+        20, champion_image_width + champion_image_padding + 10 + item_image_width + item_image_padding + 40))
 
     template_image.paste(summoner_spell_images.crop((summoner_spell_1.x, summoner_spell_1.y,
                                                      summoner_spell_1.x + summoner_spell_1.w,
@@ -80,7 +80,7 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
         template_image.paste(legendary_items_array[item], (
             20,
             champion_image_width + champion_image_padding + 10 + item_image_width * (item + 2) + item_image_padding * (
-                        item + 2) + 40))
+                    item + 2) + 40))
         item += 1
 
     createChampionLabel(champion, template_image)
