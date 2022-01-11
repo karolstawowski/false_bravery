@@ -45,6 +45,8 @@ generateImage(random.choice(champions), random_boots, boots_items[random_boots][
               summoner_spells[random_summoner_spells[0]],
               summoner_spells[random_summoner_spells[1]])
 
+password = open('bot_password.txt', 'r')
+
 # @client.event
 # async def on_ready():
 #     print('We have logged in as {0.user}'.format(client))
@@ -64,4 +66,4 @@ generateImage(random.choice(champions), random_boots, boots_items[random_boots][
 #         # embed.set_image(url=imageURL)
 #         await message.channel.send(file=discord.File("./assets/ready.png"))
 #
-# client.run("OTI1ODIwNTU1OTc2OTI1MjE0.YcyrlQ.lhxjfnRF-NnKLaeC1PjlMJT6QwU")
+# client.run(password)
