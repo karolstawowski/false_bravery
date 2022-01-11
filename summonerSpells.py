@@ -1,4 +1,6 @@
 import requests
+from summonerSpellClass import SummonerSpell
+
 
 def getSummonerSpellsFromApi(lol_version):
     summoner_spells = {}
@@ -10,8 +12,10 @@ def getSummonerSpellsFromApi(lol_version):
     resp_pl = response_pl.json()['data']
 
     for id in resp_en:
-        summoner_spells[id] = [resp_en[id]['name']]
-        summoner_spells[id].append(resp_pl[id]['name'])
+        if 'CLASSIC' in resp_en[id]['modes'] and resp_en[id]['name'] != 'Smite':
+            summoner_spells[id] = SummonerSpell(id, resp_en[id]['name'], resp_pl[id]['name'], resp_en[id]['image']['x'],
+                                                resp_en[id]['image']['y'], resp_en[id]['image']['w'],
+                                                resp_en[id]['image']['h'])
 
     print(summoner_spells)
 

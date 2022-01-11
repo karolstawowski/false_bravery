@@ -1,4 +1,6 @@
+import random
 import requests
+
 
 def getChampionsFromApi(lol_version):
     champions = []
@@ -10,6 +12,10 @@ def getChampionsFromApi(lol_version):
     for id in resp_en:
         champions.append(resp_en[id]['name'])
 
-    print(champions)
+    # print(champions)
 
     return champions
+
+
+def randomizeChampion(champions):
+    return random.choice(champions)
