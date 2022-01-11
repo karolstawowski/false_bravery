@@ -2,7 +2,6 @@ import random
 import requests
 
 
-# Itemki pod mapy
 def getItemsFromApi(lol_version):
     mythic_items = {}
     legendary_items = {}
@@ -17,7 +16,8 @@ def getItemsFromApi(lol_version):
     for id in resp_en:
         if 'into' not in resp_en[id] and 'from' in resp_en[id] and "Consumable" not in resp_en[id]['tags'] and \
                 resp_en[id]['gold'][
-                    'purchasable'] and 'Boots' not in resp_en[id]['tags']:
+                    'purchasable'] and 'Boots' not in resp_en[id]['tags'] and resp_en[id][
+            'name'] != 'Mejai\'s Soulstealer':
             if '<rarityMythic>Mythic Passive:</rarityMythic>' in resp_en[id]['description']:
                 mythic_items[id] = [resp_en[id]['name'], resp_pl[id]['name']]
             else:
