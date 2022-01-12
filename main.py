@@ -1,11 +1,11 @@
 import discord
-import random
 
-from champions import getChampionsFromApi
-from items import getItemsFromApi
-from summonerSpells import getSummonerSpellsFromApi
+from champions import getChampionsFromApi, randomizeChampion
+from items import getItemsFromApi, randomizeBoots, randomizeMythicItem, randomizeLegendaryItems
+from summonerSpells import getSummonerSpellsFromApi, randomizeSummonerSpells
 from images import generateImage
 from leagueOfLegendsVersion import getLeagueOfLegendsVersion
+from skills import randomizeSkillOrder
 
 client = discord.Client()
 
@@ -29,39 +29,21 @@ async def on_message(message):
         return
 
     if message.content.startswith('!aramki'):
-        random_legendary_items = []
-        random_summoner_spells = []
+        random_legendary_items = randomizeLegendaryItems(legendary_items)
+        random_summoner_spells = randomizeSummonerSpells(summoner_spells)
+        random_boots = randomizeBoots(boots_items)
+        random_mythic_item = randomizeMythicItem(mythic_items)
+        random_skill_order = randomizeSkillOrder()
+        random_champion = randomizeChampion(champions)
 
-        i = 0
-        while i < 4:
-            random_legendary_item = random.choice(list(legendary_items.keys()))
-            if random_legendary_item not in random_legendary_items:
-                random_legendary_items.append(random_legendary_item)
-            else:
-                continue
-            i += 1
-
-        i = 0
-        while i < 2:
-            random_summoner_spell = random.choice(list(summoner_spells.keys()))
-            if random_summoner_spell not in random_summoner_spells:
-                random_summoner_spells.append(random_summoner_spell)
-            else:
-                continue
-            i += 1
-
-        random_boots = random.choice(list(boots_items.keys()))
-        random_mythic_item = random.choice(list(mythic_items.keys()))
-
-        generateImage(random.choice(champions), random_boots, boots_items[random_boots][0],
+        generateImage(random_champion, random_boots, boots_items[random_boots][0],
                       boots_items[random_boots][1],
                       random_mythic_item, mythic_items[random_mythic_item][0], mythic_items[random_mythic_item][1],
                       random_legendary_items, [legendary_items[i][0] for i in random_legendary_items],
                       [legendary_items[i][1] for i in random_legendary_items],
                       summoner_spells[random_summoner_spells[0]],
-                      summoner_spells[random_summoner_spells[1]])
+                      summoner_spells[random_summoner_spells[1]], random_skill_order)
 
         await message.reply(file=discord.File("./temp/output_file.png"))
-
 
 client.run(password)

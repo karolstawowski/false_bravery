@@ -17,5 +17,5 @@ def getChampionsFromApi(lol_version):
     return champions
 
 
-def randomizeChampion(champions):
-    return random.choice(champions)
+def randomizeChampion(champions_list):
+    return random.choice(champions_list)

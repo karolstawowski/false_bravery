@@ -1,4 +1,5 @@
 import requests
+import random
 from summonerSpellClass import SummonerSpell
 
 
@@ -20,3 +21,16 @@ def getSummonerSpellsFromApi(lol_version):
     # print(summoner_spells)
 
     return summoner_spells
+
+
+def randomizeSummonerSpells(summoner_spells_dictionary):
+    random_summoner_spells = []
+    i = 0
+    while i < 2:
+        random_summoner_spell = random.choice(list(summoner_spells_dictionary.keys()))
+        if random_summoner_spell not in random_summoner_spells:
+            random_summoner_spells.append(random_summoner_spell)
+        else:
+            continue
+        i += 1
+    return random_summoner_spells

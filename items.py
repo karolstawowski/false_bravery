@@ -33,9 +33,22 @@ def getItemsFromApi(lol_version):
     return [mythic_items, legendary_items, boots_items]
 
 
-def randomizeBoots(boots):
-    boots_id = random.choice(list(boots.keys()))
-    boots_name_en = boots[boots_id][0]
-    boots_name_pl = boots[boots_id][1]
+def randomizeBoots(boots_dictionary):
+    return random.choice(list(boots_dictionary.keys()))
 
-    return [boots_id, boots_name_en, boots_name_pl]
+
+def randomizeMythicItem(mythic_items_dictionary):
+    return random.choice(list(mythic_items_dictionary.keys()))
+
+
+def randomizeLegendaryItems(legendary_items_dictionary):
+    random_legendary_items = []
+    i = 0
+    while i < 4:
+        random_legendary_item = random.choice(list(legendary_items_dictionary.keys()))
+        if random_legendary_item not in random_legendary_items:
+            random_legendary_items.append(random_legendary_item)
+        else:
+            continue
+        i += 1
+    return random_legendary_items
