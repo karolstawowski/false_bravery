@@ -46,10 +46,12 @@ def createItemLabel(label, template_image, x, y):
 def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_item_en, mythic_item_pl,
                   legendary_items, legendary_items_en, legendary_items_pl, summoner_spell_1, summoner_spell_2):
     legendary_items_array = []
-    item_image_width = 64
-    item_image_padding = 10
-    champion_image_width = 120
-    champion_image_padding = 20
+    item_image_size = 64
+    champion_image_size = 120
+    summoner_spell_image_size = 48
+    line_height = 20
+    outter_padding = 20
+    inside_padding = 10
 
     champion_image = getImageFromApi(champion, 'champion')
     boots_image = getImageFromApi(boots_item, 'item')
@@ -60,12 +62,13 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
 
     template_image = generateTemplateImage("./assets/template.png")
 
-    template_image.paste(champion_image, (20, champion_image_padding))
+    template_image.paste(champion_image, (outter_padding, outter_padding))
 
-    template_image.paste(boots_image, (20, champion_image_width + champion_image_padding + 10 + 40))
+    template_image.paste(boots_image,
+                         (outter_padding, champion_image_size + 2 * outter_padding + inside_padding + line_height))
 
     template_image.paste(mythic_item, (
-        20, champion_image_width + champion_image_padding + 10 + item_image_width + item_image_padding + 40))
+        outter_padding, champion_image_size + 2 * outter_padding + 2 * inside_padding + item_image_size + line_height))
 
     template_image.paste(summoner_spell_images.crop((summoner_spell_1.x, summoner_spell_1.y,
                                                      summoner_spell_1.x + summoner_spell_1.w,
@@ -78,25 +81,26 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
     item = 0
     while item < 4:
         template_image.paste(legendary_items_array[item], (
-            20,
-            champion_image_width + champion_image_padding + 10 + item_image_width * (item + 2) + item_image_padding * (
-                    item + 2) + 40))
+            outter_padding,
+            champion_image_size + 2 * outter_padding + inside_padding + item_image_size * (
+                        item + 2) + line_height + inside_padding * (
+                    item + 2)))
         item += 1
 
     createChampionLabel(champion, template_image)
 
     createSkillOrderLabel(template_image)
 
-    createItemLabel(boots_en, template_image, 94, 190 + 12)
-    createItemLabel(boots_pl, template_image, 94, 190 + 12 + 24)
+    createItemLabel(boots_en, template_image, 94, 202)
+    createItemLabel(boots_pl, template_image, 94, 202 + 24)
 
-    createItemLabel(mythic_item_en, template_image, 94, 190 + 12 + 64 + 10)
-    createItemLabel(mythic_item_pl, template_image, 94, 190 + 12 + 64 + 10 + 24)
+    createItemLabel(mythic_item_en, template_image, 94, 202 + 74)
+    createItemLabel(mythic_item_pl, template_image, 94, 202 + 74 + 24)
 
     for item in range(len(legendary_items_en)):
-        createItemLabel(legendary_items_en[item], template_image, 94, 190 + 12 + 74 * (item + 2))
+        createItemLabel(legendary_items_en[item], template_image, 94, 202 + 74 * (item + 2))
 
     for item in range(len(legendary_items_pl)):
-        createItemLabel(legendary_items_pl[item], template_image, 94, 190 + 12 + 24 + 74 * (item + 2))
+        createItemLabel(legendary_items_pl[item], template_image, 94, 202 + 24 + 74 * (item + 2))
 
     template_image.save("./temp/output_file.png")
