@@ -1,4 +1,5 @@
 import discord
+from discord.ext.commands import bot
 
 from champions import getChampionsFromApi, randomizeChampion
 from items import getItemsFromApi, randomizeBoots, randomizeMythicItem, randomizeLegendaryItems
@@ -45,5 +46,13 @@ async def on_message(message):
                       summoner_spells[random_summoner_spells[1]], random_skill_order)
 
         await message.reply(file=discord.File("./temp/output_file.png"))
+
+
+@client.event
+async def on_message(message):
+    if client.user.mentioned_in(message):
+        embed = discord.Embed(title="Oxygen's Bot Help")
+        embed.add_field(name="Available commands:", value="!aramki - generate random stuff")
+        await message.channel.send(embed=embed)
 
 client.run(password)
