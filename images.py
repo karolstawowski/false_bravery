@@ -39,6 +39,11 @@ def createItemLabel(label, template_image, x, y):
     draw_image.text((x, y), f'{label}', (255, 255, 255), font=font)
 
 
+def createTempPath():
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
+
+
 def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_item_en, mythic_item_pl,
                   legendary_items, legendary_items_en, legendary_items_pl, summoner_spell_1, summoner_spell_2,
                   skill_order):
@@ -49,6 +54,8 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
     line_height = 20
     outer_padding = 20
     inside_padding = 10
+
+    createTempPath()
 
     champion_image = getImageFromApi(champion, 'champion')
     boots_image = getImageFromApi(boots_item, 'item')
