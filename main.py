@@ -5,10 +5,11 @@ from champions import getChampionsFromApi
 from items import getItemsFromApi
 from summonerSpells import getSummonerSpellsFromApi
 from images import generateImage
+from leagueOfLegendsVersion import getLeagueOfLegendsVersion
 
 client = discord.Client()
 
-lol_version = "12.1.1"
+lol_version = getLeagueOfLegendsVersion()
 
 [mythic_items, legendary_items, boots_items] = getItemsFromApi(lol_version)
 champions = getChampionsFromApi(lol_version)
