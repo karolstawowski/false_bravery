@@ -18,8 +18,6 @@ def getSummonerSpellsFromApi(lol_version):
                                                 resp_en[id]['image']['y'], resp_en[id]['image']['w'],
                                                 resp_en[id]['image']['h'])
 
-    # print(summoner_spells)
-
     return summoner_spells
 
 

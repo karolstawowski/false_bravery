@@ -26,10 +26,6 @@ def getItemsFromApi(lol_version):
         if 'Boots' in resp_en[id]['tags'] and resp_en[id]['gold']['purchasable'] and 'into' not in resp_en[id]:
             boots_items[id] = [resp_en[id]['name'], resp_pl[id]['name']]
 
-    # print(mythic_items)
-    # print(legendary_items)
-    # print(boots_items)
-
     return [mythic_items, legendary_items, boots_items]
 
 

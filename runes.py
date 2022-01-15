@@ -13,8 +13,6 @@ def getRunesFromApi(lol_version):
         for rune in tree['slots'][0]['runes']:
             runes[rune['key']] = rune['icon']
 
-    # print(runes)
-
     return runes
 
 

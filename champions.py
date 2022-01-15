@@ -12,8 +12,6 @@ def getChampionsFromApi(lol_version):
     for id in resp_en:
         champions.append(id)
 
-    # print(champions)
-
     return champions
 
 
