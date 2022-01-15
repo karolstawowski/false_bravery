@@ -55,10 +55,12 @@ async def on_message(message):
         await message.reply(file=discord.File("./temp/output_file.png"))
 
     if client.user.mentioned_in(message):
+        file = discord.File('./assets/mclaren128.png', filename='mclaren128.png')
         embed = discord.Embed(title="Oxygen's Bot Help")
         embed.add_field(name="Available commands:", value="!aramki - generate random stuff")
-        embed.add_field(name="Github repository", value="https://github.com/karolstawowski/false_bravery")
-        await message.channel.send(embed=embed)
+        embed.set_footer(text="https://github.com/karolstawowski/false_bravery")
+        embed.set_thumbnail(url='attachment://mclaren128.png')
+        await message.channel.send(file=file, embed=embed)
 
 
 client.run(password)
