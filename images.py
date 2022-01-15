@@ -3,11 +3,9 @@ import urllib.request
 import os
 
 
-def createChampionLabel(champion, image):
-    draw_image = ImageDraw.Draw(image)
-    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 20)
-    w, h = draw_image.textsize(f"{champion}", font=font)
-    draw_image.text(((120 - w) / 2 + 20, 150), f"{champion}", (255, 255, 255), font=font)
+def createTempPath():
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
 
 
 def getImageFromApi(source, source_type):
@@ -18,20 +16,13 @@ def getImageFromApi(source, source_type):
     return Image.open(f'./temp/{source}.png')
 
 
-def convertPngToJpg(image_name, png_image, size):
-    new_image = Image.new("RGBA", size)
-    new_image.paste(png_image, (0, 0), png_image)
-    new_image.convert('RGB').save(f'./temp/runes/{image_name}.jpg')
-    return new_image
-
-
-def getRuneImageFromApi(name, source):
+def getRuneImageFromApi(name, source, size):
     if os.path.isfile(f'./temp/runes/{name}.jpg'):
         return Image.open(f'./temp/runes/{name}.jpg')
     urllib.request.urlretrieve(f'https://ddragon.canisback.com/img/{source}', f'./temp/runes/{name}.png')
     rune_image = Image.open(f'./temp/runes/{name}.png')
-    rune_image = rune_image.resize((64, 64))
-    return convertPngToJpg(name, rune_image, (64, 64))
+    rune_image = rune_image.resize(size)
+    return convertPngToJpg(name, rune_image, size)
 
 
 def generateTemplateImage(path):
@@ -40,6 +31,20 @@ def generateTemplateImage(path):
     image = Image.new('RGB', (360, 644), (80, 80, 80))
     image.save(f'{path}')
     return image
+
+
+def convertPngToJpg(image_name, png_image, size):
+    new_image = Image.new("RGBA", size)
+    new_image.paste(png_image, (0, 0), png_image)
+    new_image.convert('RGB').save(f'./temp/runes/{image_name}.jpg')
+    return new_image
+
+
+def createChampionLabel(champion, image):
+    draw_image = ImageDraw.Draw(image)
+    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 20)
+    w, h = draw_image.textsize(f"{champion}", font=font)
+    draw_image.text(((120 - w) / 2 + 20, 150), f"{champion}", (255, 255, 255), font=font)
 
 
 def createSkillOrderLabel(skills, template_image):
@@ -54,21 +59,17 @@ def createItemLabel(label, template_image, x, y):
     draw_image.text((x, y), f'{label}', (255, 255, 255), font=font)
 
 
-def createTempPath():
-    if not os.path.exists('temp'):
-        os.makedirs('temp')
-
-
 def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_item_en, mythic_item_pl,
                   legendary_items, legendary_items_en, legendary_items_pl, summoner_spell_1, summoner_spell_2,
                   skill_order, rune):
     legendary_items_array = []
     item_image_size = 64
     champion_image_size = 120
-    summoner_spell_image_size = 48
     line_height = 20
     outer_padding = 20
     inside_padding = 10
+    # summoner_spell_image_size = 48
+    # rune_image_size = 64
 
     createTempPath()
 
@@ -78,7 +79,7 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
     for item in legendary_items:
         legendary_items_array.append(getImageFromApi(item, 'item'))
     summoner_spell_images = getImageFromApi('spell0', 'sprite')
-    rune_image = getRuneImageFromApi(rune[0], rune[1])
+    rune_image = getRuneImageFromApi(rune[0], rune[1], (64, 64))
 
     template_image = generateTemplateImage("./assets/template.png")
 
@@ -98,14 +99,14 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
                                                      summoner_spell_2.x + summoner_spell_2.w,
                                                      summoner_spell_2.y + summoner_spell_2.h)), (160, 84))
 
-    item = 0
-    while item < 4:
-        template_image.paste(legendary_items_array[item], (
+    legendary_item_i = 0
+    while legendary_item_i < 4:
+        template_image.paste(legendary_items_array[legendary_item_i], (
             outer_padding,
             champion_image_size + 2 * outer_padding + inside_padding + item_image_size * (
-                    item + 2) + line_height + inside_padding * (
-                    item + 2)))
-        item += 1
+                    legendary_item_i + 2) + line_height + inside_padding * (
+                    legendary_item_i + 2)))
+        legendary_item_i += 1
 
     template_image.paste(rune_image, (248, 26))
 
