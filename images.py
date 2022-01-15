@@ -5,7 +5,7 @@ import os
 
 def createChampionLabel(champion, image):
     draw_image = ImageDraw.Draw(image)
-    font = ImageFont.truetype("./assets/Roboto-Regular.ttf", 20)
+    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 20)
     w, h = draw_image.textsize(f"{champion}", font=font)
     draw_image.text(((120 - w) / 2 + 20, 150), f"{champion}", (255, 255, 255), font=font)
 
@@ -18,6 +18,22 @@ def getImageFromApi(source, source_type):
     return Image.open(f'./temp/{source}.png')
 
 
+def convertPngToJpg(image_name, png_image, size):
+    new_image = Image.new("RGBA", size)
+    new_image.paste(png_image, (0, 0), png_image)
+    new_image.convert('RGB').save(f'./temp/runes/{image_name}.jpg')
+    return new_image
+
+
+def getRuneImageFromApi(name, source):
+    if os.path.isfile(f'./temp/runes/{name}.jpg'):
+        return Image.open(f'./temp/runes/{name}.jpg')
+    urllib.request.urlretrieve(f'https://ddragon.canisback.com/img/{source}', f'./temp/runes/{name}.png')
+    rune_image = Image.open(f'./temp/runes/{name}.png')
+    rune_image = rune_image.resize((64, 64))
+    return convertPngToJpg(name, rune_image, (64, 64))
+
+
 def generateTemplateImage(path):
     if os.path.isfile(f'{path}'):
         return Image.open(f'{path}')
@@ -28,9 +44,8 @@ def generateTemplateImage(path):
 
 def createSkillOrderLabel(skills, template_image):
     draw_image = ImageDraw.Draw(template_image)
-    font = ImageFont.truetype("./assets/Roboto-Regular.ttf", 20)
-    draw_image.text((190, 84), "Skill order", (255, 255, 255), font=font)
-    draw_image.text((190, 114), f"R > {skills[0]} > {skills[1]} > {skills[2]} ", (255, 255, 255), font=font)
+    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 26)
+    draw_image.text((228, 102), f"{skills[0]} > {skills[1]} > {skills[2]} ", (255, 255, 255), font=font)
 
 
 def createItemLabel(label, template_image, x, y):
@@ -46,7 +61,7 @@ def createTempPath():
 
 def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_item_en, mythic_item_pl,
                   legendary_items, legendary_items_en, legendary_items_pl, summoner_spell_1, summoner_spell_2,
-                  skill_order):
+                  skill_order, rune):
     legendary_items_array = []
     item_image_size = 64
     champion_image_size = 120
@@ -63,6 +78,7 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
     for item in legendary_items:
         legendary_items_array.append(getImageFromApi(item, 'item'))
     summoner_spell_images = getImageFromApi('spell0', 'sprite')
+    rune_image = getRuneImageFromApi(rune[0], rune[1])
 
     template_image = generateTemplateImage("./assets/template.png")
 
@@ -76,11 +92,11 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
 
     template_image.paste(summoner_spell_images.crop((summoner_spell_1.x, summoner_spell_1.y,
                                                      summoner_spell_1.x + summoner_spell_1.w,
-                                                     summoner_spell_1.y + summoner_spell_1.h)), (190, 26))
+                                                     summoner_spell_1.y + summoner_spell_1.h)), (160, 26))
 
     template_image.paste(summoner_spell_images.crop((summoner_spell_2.x, summoner_spell_2.y,
                                                      summoner_spell_2.x + summoner_spell_2.w,
-                                                     summoner_spell_2.y + summoner_spell_2.h)), (262, 26))
+                                                     summoner_spell_2.y + summoner_spell_2.h)), (160, 84))
 
     item = 0
     while item < 4:
@@ -91,20 +107,23 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
                     item + 2)))
         item += 1
 
+    template_image.paste(rune_image, (248, 26))
+
     createChampionLabel(champion, template_image)
 
     createSkillOrderLabel(skill_order, template_image)
 
     createItemLabel(boots_en, template_image, 94, 202)
     createItemLabel(boots_pl, template_image, 94, 202 + 24)
+    # createItemLabel(boots_en, template_image, 94, 212)
 
     createItemLabel(mythic_item_en, template_image, 94, 202 + 74)
     createItemLabel(mythic_item_pl, template_image, 94, 202 + 74 + 24)
+    # createItemLabel(mythic_item_en, template_image, 94, 212 + 74)
 
     for item in range(len(legendary_items_en)):
         createItemLabel(legendary_items_en[item], template_image, 94, 202 + 74 * (item + 2))
-
-    for item in range(len(legendary_items_pl)):
         createItemLabel(legendary_items_pl[item], template_image, 94, 202 + 24 + 74 * (item + 2))
+        # createItemLabel(legendary_items_en[item], template_image, 94, 212 + 74 * (item + 2))
 
     template_image.save("./temp/output_file.png")
