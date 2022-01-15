@@ -11,16 +11,9 @@ def createTempPath():
 def generateTemplateImage(path):
     if os.path.isfile(f'{path}'):
         return Image.open(f'{path}')
-    image = Image.new('RGB', (360, 644), (80, 80, 80))
+    image = Image.new('RGB', (350, 644), (80, 80, 80))
     image.save(f'{path}')
     return image
-
-
-def convertPngToJpg(image_name, png_image, size):
-    new_image = Image.new("RGBA", size)
-    new_image.paste(png_image, (0, 0), png_image)
-    new_image.convert('RGB').save(f'./temp/runes/{image_name}.jpg')
-    return new_image
 
 
 def createChampionLabel(champion, image):
@@ -32,8 +25,8 @@ def createChampionLabel(champion, image):
 
 def createSkillOrderLabel(skills, template_image):
     draw_image = ImageDraw.Draw(template_image)
-    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 26)
-    draw_image.text((228, 102), f"{skills[0]} > {skills[1]} > {skills[2]} ", (255, 255, 255), font=font)
+    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 24)
+    draw_image.text((230, 102), f"{skills[0]} > {skills[1]} > {skills[2]} ", (255, 255, 255), font=font)
 
 
 def createItemLabel(label, template_image, x, y):
@@ -91,7 +84,7 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
                     legendary_item_i + 2)))
         legendary_item_i += 1
 
-    template_image.paste(rune_image, (248, 26))
+    template_image.paste(rune_image, (250, 26))
 
     createChampionLabel(champion, template_image)
 
