@@ -56,7 +56,7 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
         legendary_items_array.append(getImageFromApi(item, 'item'))
     summoner_spell_images = getImageFromApi('spell0', 'sprite')
     rune_image = getRuneImageFromApi(primary_rune.key, primary_rune.link, (64, 64), "BLACK")
-    rune_tree = getRuneImageFromApi(rune_tree.key, rune_tree.link, (32, 32), (60, 60, 60))
+    rune_tree_image = getRuneImageFromApi(rune_tree.key, rune_tree.link, (48, 48), (60, 60, 60))
 
     template_image = generateTemplateImage("./assets/template.png")
 
@@ -85,9 +85,9 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
                     legendary_item_i + 2)))
         legendary_item_i += 1
 
-    template_image.paste(rune_image, (236, 26))
+    template_image.paste(rune_image, (230, 26))
 
-    template_image.paste(rune_tree, (310, 42))
+    template_image.paste(rune_tree_image, (304, 34))
 
     createChampionLabel(champion, template_image)
 
