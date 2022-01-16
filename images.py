@@ -37,7 +37,7 @@ def createItemLabel(label, template_image, x, y):
 
 def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_item_en, mythic_item_pl,
                   legendary_items, legendary_items_en, legendary_items_pl, summoner_spell_1, summoner_spell_2,
-                  skill_order, rune):
+                  skill_order, primary_rune, rune_tree):
     legendary_items_array = []
     item_image_size = 64
     champion_image_size = 120
@@ -55,7 +55,8 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
     for item in legendary_items:
         legendary_items_array.append(getImageFromApi(item, 'item'))
     summoner_spell_images = getImageFromApi('spell0', 'sprite')
-    rune_image = getRuneImageFromApi(rune[0], rune[1], (64, 64))
+    rune_image = getRuneImageFromApi(primary_rune.key, primary_rune.link, (64, 64), "BLACK")
+    rune_tree = getRuneImageFromApi(rune_tree.key, rune_tree.link, (32, 32), (60, 60, 60))
 
     template_image = generateTemplateImage("./assets/template.png")
 
@@ -84,7 +85,9 @@ def generateImage(champion, boots_item, boots_en, boots_pl, mythic_item, mythic_
                     legendary_item_i + 2)))
         legendary_item_i += 1
 
-    template_image.paste(rune_image, (260, 26))
+    template_image.paste(rune_image, (236, 26))
+
+    template_image.paste(rune_tree, (310, 42))
 
     createChampionLabel(champion, template_image)
 

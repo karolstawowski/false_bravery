@@ -13,7 +13,7 @@ def getImageFromApi(source, source_type):
     return Image.open(f'./temp/{source_type}/{source}.png')
 
 
-def getRuneImageFromApi(name, source, size):
+def getRuneImageFromApi(name, source, size, background_color):
     if os.path.isfile(f'./temp/runes/{name}.jpg'):
         return Image.open(f'./temp/runes/{name}.jpg')
     if not os.path.isdir(f'./temp/runes'):
@@ -21,11 +21,11 @@ def getRuneImageFromApi(name, source, size):
     urllib.request.urlretrieve(f'https://ddragon.canisback.com/img/{source}', f'./temp/runes/{name}.png')
     rune_image = Image.open(f'./temp/runes/{name}.png')
     rune_image = rune_image.resize(size)
-    return convertPngToJpg(name, rune_image, size)
+    return convertPngToJpg(name, rune_image, size, background_color)
 
 
-def convertPngToJpg(image_name, png_image, size):
-    new_image = Image.new("RGBA", size)
+def convertPngToJpg(image_name, png_image, size, background_color):
+    new_image = Image.new("RGBA", size, background_color)
     new_image.paste(png_image, (0, 0), png_image)
     new_image.convert('RGB').save(f'./temp/runes/{image_name}.jpg')
     return new_image
