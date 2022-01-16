@@ -13,7 +13,7 @@ False Bravery is a Discord Bot for League of Legends players which creates an im
 To run False Bravery, you need to have <a href="https://www.python.org/downloads/">Python</a> and <a href="https://pip.pypa.io/en/stable/cli/pip_install/">pip</a> installed.
 
 ```bash
-git clone https://github.com/karolstawowski/Formula_1_Standings_Website.git
+git clone https://github.com/karolstawowski/false_bravery.git
 ```
 
 ## Usage
@@ -30,16 +30,24 @@ git clone https://github.com/karolstawowski/Formula_1_Standings_Website.git
 ```bash
 📦Python Discord Bot
  ┣ 📂assets
+ ┃ ┣ 📜Roboto-Bold.ttf
  ┃ ┣ 📜Roboto-Regular.ttf
  ┃ ┗ 📜template.png
  ┣ 📜.gitignore
- ┣ 📜bot_password.txt
+ ┣ 📜apiHandling.py
  ┣ 📜champions.py
  ┣ 📜images.py
  ┣ 📜items.py
+ ┣ 📜leagueOfLegendsVersion.py
  ┣ 📜LICENSE
  ┣ 📜main.py
+ ┣ 📜primaryRuneClass.py
+ ┣ 📜README.md
  ┣ 📜requirements.txt
+ ┣ 📜runeClass.py
+ ┣ 📜runes.py
+ ┣ 📜runeTreeClass.py
+ ┣ 📜skills.py
  ┣ 📜summonerSpellClass.py
  ┗ 📜summonerSpells.py
 ```
