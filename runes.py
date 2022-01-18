@@ -4,7 +4,7 @@ from primaryRuneClass import PrimaryRune
 from runeTreeClass import RuneTree
 
 
-def get_runes_from_api(lol_version):
+def get_runes_from_api(lol_version) -> list:
     primary_runes = []
     rune_trees = []
 
@@ -13,21 +13,17 @@ def get_runes_from_api(lol_version):
     resp_en = response_en.json()
 
     for tree in resp_en:
-        # print(tree)
         rune_trees.append(RuneTree(tree['name'], tree['icon']))
-        # print(tree['name'], tree['icon'])
         for rune in tree['slots'][0]['runes']:
             primary_runes.append(PrimaryRune(rune['key'], rune['icon'], tree['name']))
-            # print(rune['key'], rune['icon'], tree['name'])
-    # print(primary_runes)
     return [primary_runes, rune_trees]
 
 
-def randomize_primary_rune(runes_list):
+def randomize_primary_rune(runes_list) -> PrimaryRune:
     return random.choice(runes_list)
 
 
-def randomize_rune_tree(random_primary_rune, rune_trees_list):
+def randomize_rune_tree(random_primary_rune, rune_trees_list) -> RuneTree:
     random_rune_tree = random.choice(rune_trees_list)
     while random_primary_rune.tree == random_rune_tree.key:
         random_rune_tree = random.choice(rune_trees_list)

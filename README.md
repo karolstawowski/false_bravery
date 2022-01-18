@@ -34,7 +34,7 @@ git clone https://github.com/karolstawowski/false_bravery.git
  ┃ ┣ 📜Roboto-Regular.ttf
  ┃ ┗ 📜template.png
  ┣ 📜.gitignore
- ┣ 📜apiHandling.py
+ ┣ 📜apiImageHandling.py
  ┣ 📜champions.py
  ┣ 📜images.py
  ┣ 📜items.py
