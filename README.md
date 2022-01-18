@@ -44,7 +44,6 @@ git clone https://github.com/karolstawowski/false_bravery.git
  ┣ 📜primaryRuneClass.py
  ┣ 📜README.md
  ┣ 📜requirements.txt
- ┣ 📜runeClass.py
  ┣ 📜runes.py
  ┣ 📜runeTreeClass.py
  ┣ 📜skills.py
