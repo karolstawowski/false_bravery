@@ -2,7 +2,7 @@ import random
 import requests
 
 
-def get_champions_from_api(lol_version) -> list:
+def get_champions_from_api(lol_version: str) -> list:
     champions = []
 
     response_en = requests.get(f"http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/en_US/champion.json")
@@ -15,5 +15,5 @@ def get_champions_from_api(lol_version) -> list:
     return champions
 
 
-def randomize_champion(champions_list) -> str:
+def randomize_champion(champions_list: list) -> str:
     return random.choice(champions_list)

@@ -29,11 +29,12 @@ def get_items_from_api(lol_version) -> list:
     return [mythic_items, legendary_items, boots_items]
 
 
-def randomize_boots(boots_dictionary) -> list:
+def randomize_boots(boots_dictionary) -> str:
+    print(type(random.choice(list(boots_dictionary.keys()))))
     return random.choice(list(boots_dictionary.keys()))
 
 
-def randomize_mythic_item(mythic_items_dictionary) -> list:
+def randomize_mythic_item(mythic_items_dictionary) -> str:
     return random.choice(list(mythic_items_dictionary.keys()))
 
 
