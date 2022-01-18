@@ -35,9 +35,10 @@ def create_item_label(item_label: str, template_image: Image, x_axis: int, y_axi
     draw_image.text((x_axis, y_axis), f'{item_label}', (255, 255, 255), font=font)
 
 
-def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str, mythic_item, mythic_item_en, mythic_item_pl,
-                  legendary_items, legendary_items_en, legendary_items_pl, summoner_spell_1, summoner_spell_2,
-                  skill_order, primary_rune, rune_tree):
+def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str, mythic_item: str, mythic_item_en: str,
+                   mythic_item_pl: str,
+                   legendary_items, legendary_items_en, legendary_items_pl, summoner_spell_1, summoner_spell_2,
+                   skill_order, primary_rune, rune_tree):
     legendary_items_array = []
     item_image_size = 64
     champion_image_size = 120
@@ -55,8 +56,8 @@ def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str,
     for item in legendary_items:
         legendary_items_array.append(get_image_from_api(item, 'item'))
     summoner_spell_images = get_image_from_api('spell0', 'sprite')
-    rune_image = get_rune_image_from_api(primary_rune.key, primary_rune.link, (64, 64), (0, 0, 0))
-    rune_tree_image = get_rune_image_from_api(rune_tree.key, rune_tree.link, (48, 48), (60, 60, 60))
+    rune_image = get_rune_image_from_api(primary_rune.key, primary_rune.image_link, (64, 64), (0, 0, 0))
+    rune_tree_image = get_rune_image_from_api(rune_tree.key, rune_tree.image_link, (48, 48), (60, 60, 60))
 
     template_image = generate_template_image("./assets/template.png")
 
@@ -68,13 +69,15 @@ def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str,
     template_image.paste(mythic_item, (
         outer_padding, champion_image_size + 2 * outer_padding + 2 * inside_padding + item_image_size + line_height))
 
-    template_image.paste(summoner_spell_images.crop((summoner_spell_1.x, summoner_spell_1.y,
-                                                     summoner_spell_1.x + summoner_spell_1.w,
-                                                     summoner_spell_1.y + summoner_spell_1.h)), (160, 26))
+    template_image.paste(summoner_spell_images.crop((summoner_spell_1.image_x_axis, summoner_spell_1.image_y_axis,
+                                                     summoner_spell_1.image_x_axis + summoner_spell_1.image_width,
+                                                     summoner_spell_1.image_y_axis + summoner_spell_1.image_height)),
+                         (160, 26))
 
-    template_image.paste(summoner_spell_images.crop((summoner_spell_2.x, summoner_spell_2.y,
-                                                     summoner_spell_2.x + summoner_spell_2.w,
-                                                     summoner_spell_2.y + summoner_spell_2.h)), (160, 84))
+    template_image.paste(summoner_spell_images.crop((summoner_spell_2.image_x_axis, summoner_spell_2.image_y_axis,
+                                                     summoner_spell_2.image_x_axis + summoner_spell_2.image_width,
+                                                     summoner_spell_2.image_y_axis + summoner_spell_2.image_height)),
+                         (160, 84))
 
     legendary_item_i = 0
     while legendary_item_i < 4:

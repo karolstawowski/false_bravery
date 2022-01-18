@@ -30,7 +30,6 @@ def get_items_from_api(lol_version) -> list:
 
 
 def randomize_boots(boots_dictionary) -> str:
-    print(type(random.choice(list(boots_dictionary.keys()))))
     return random.choice(list(boots_dictionary.keys()))
 
 

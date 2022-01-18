@@ -3,7 +3,7 @@ import random
 from summonerSpellClass import SummonerSpell
 
 
-def get_summoner_spells_from_api(lol_version) -> dict:
+def get_summoner_spells_from_api(lol_version: str) -> dict:
     summoner_spells = {}
 
     response_en = requests.get(f"http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/en_US/summoner.json")
@@ -21,7 +21,7 @@ def get_summoner_spells_from_api(lol_version) -> dict:
     return summoner_spells
 
 
-def randomize_summoner_spells(summoner_spells_dictionary) -> list:
+def randomize_summoner_spells(summoner_spells_dictionary: dict) -> list:
     random_summoner_spells = []
     i = 0
     while i < 2:
