@@ -6,6 +6,9 @@ from images import generate_image
 from leagueOfLegendsVersion import get_league_of_legends_version
 from skills import randomize_skill_order
 from runes import get_runes_from_api, randomize_primary_rune, randomize_rune_tree
+from sslHandling import verify_ssl_certificate
+
+verify_ssl_certificate()
 
 client = discord.Client()
 

@@ -16,8 +16,8 @@ def get_items_from_api(lol_version) -> list:
     for id in resp_en:
         if 'into' not in resp_en[id] and 'from' in resp_en[id] and "Consumable" not in resp_en[id]['tags'] and \
                 resp_en[id]['gold'][
-                    'purchasable'] and 'Boots' not in resp_en[id]['tags'] and resp_en[id][
-            'name'] != 'Mejai\'s Soulstealer':
+                    'purchasable'] and 'Boots' not in resp_en[id]['tags'] and resp_en[id]['name'] != \
+                'Mejai\'s Soulstealer':
             if '<rarityMythic>Mythic Passive:</rarityMythic>' in resp_en[id]['description']:
                 mythic_items[id] = [resp_en[id]['name'], resp_pl[id]['name']]
             else:
