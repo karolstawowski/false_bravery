@@ -1,6 +1,9 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
 from apiImageHandling import get_image_from_api, get_rune_image_from_api
+from primaryRuneClass import PrimaryRune
+from runeTreeClass import RuneTree
+from summonerSpellClass import SummonerSpell
 
 
 def create_temp_directory():
@@ -37,8 +40,9 @@ def create_item_label(item_label: str, template_image: Image, x_axis: int, y_axi
 
 def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str, mythic_item: str, mythic_item_en: str,
                    mythic_item_pl: str,
-                   legendary_items, legendary_items_en, legendary_items_pl, summoner_spell_1, summoner_spell_2,
-                   skill_order, primary_rune, rune_tree):
+                   legendary_items: list, legendary_items_en: list, legendary_items_pl: list,
+                   summoner_spell_1: SummonerSpell, summoner_spell_2: SummonerSpell,
+                   skill_order: list, primary_rune: PrimaryRune, rune_tree: RuneTree):
     legendary_items_array = []
     item_image_size = 64
     champion_image_size = 120
@@ -48,23 +52,29 @@ def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str,
 
     create_temp_directory()
 
+    # get images
+
     champion_image = get_image_from_api(champion, 'champion')
     boots_image = get_image_from_api(boots_item, 'item')
-    mythic_item = get_image_from_api(mythic_item, 'item')
+    mythic_item_image = get_image_from_api(mythic_item, 'item')
     for item in legendary_items:
         legendary_items_array.append(get_image_from_api(item, 'item'))
     summoner_spell_images = get_image_from_api('spell0', 'sprite')
     rune_image = get_rune_image_from_api(primary_rune.key, primary_rune.image_link, (64, 64), (0, 0, 0))
     rune_tree_image = get_rune_image_from_api(rune_tree.key, rune_tree.image_link, (48, 48), (60, 60, 60))
 
+    # prepare template image
+
     template_image = generate_template_image("./assets/template.png")
+
+    # insert images
 
     template_image.paste(champion_image, (outer_padding, outer_padding))
 
     template_image.paste(boots_image,
                          (outer_padding, champion_image_size + 2 * outer_padding + inside_padding + line_height))
 
-    template_image.paste(mythic_item, (
+    template_image.paste(mythic_item_image, (
         outer_padding, champion_image_size + 2 * outer_padding + 2 * inside_padding + item_image_size + line_height))
 
     template_image.paste(summoner_spell_images.crop((summoner_spell_1.image_x_axis, summoner_spell_1.image_y_axis,
@@ -89,6 +99,8 @@ def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str,
     template_image.paste(rune_image, (230, 26))
 
     template_image.paste(rune_tree_image, (304, 34))
+
+    # insert labels
 
     create_champion_label(champion, template_image)
 

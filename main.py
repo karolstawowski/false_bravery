@@ -7,10 +7,13 @@ from leagueOfLegendsVersion import get_league_of_legends_version
 from skills import randomize_skill_order
 from runes import get_runes_from_api, randomize_primary_rune, randomize_rune_tree
 from sslHandling import verify_ssl_certificate
+from botPassword import get_bot_password
 
 verify_ssl_certificate()
 
 client = discord.Client()
+
+password = get_bot_password()
 
 lol_version = get_league_of_legends_version()
 
@@ -18,8 +21,6 @@ lol_version = get_league_of_legends_version()
 champions = get_champions_from_api(lol_version)
 summoner_spells = get_summoner_spells_from_api(lol_version)
 primary_runes, rune_trees = get_runes_from_api(lol_version)
-
-password = open('bot_password.txt', 'r').read()
 
 
 @client.event
@@ -58,6 +59,5 @@ async def on_message(message):
         embed.add_field(name="Available commands:", value="!aramki - generate random stuff")
         embed.set_footer(text="https://github.com/karolstawowski/false_bravery")
         await message.channel.send(embed=embed)
-
 
 client.run(password)
