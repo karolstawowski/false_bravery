@@ -45,8 +45,6 @@ def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str,
     line_height = 20
     outer_padding = 20
     inside_padding = 10
-    # summoner_spell_image_size = 48
-    # rune_image_size = 64
 
     create_temp_directory()
 
@@ -98,15 +96,12 @@ def generate_image(champion: str, boots_item: str, boots_en: str, boots_pl: str,
 
     create_item_label(boots_en, template_image, 94, 202)
     create_item_label(boots_pl, template_image, 94, 202 + 24)
-    # create_item_label(boots_en, template_image, 94, 212)
 
     create_item_label(mythic_item_en, template_image, 94, 202 + 74)
     create_item_label(mythic_item_pl, template_image, 94, 202 + 74 + 24)
-    # createItemLabel(mythic_item_en, template_image, 94, 212 + 74)
 
     for item in range(len(legendary_items_en)):
         create_item_label(legendary_items_en[item], template_image, 94, 202 + 74 * (item + 2))
         create_item_label(legendary_items_pl[item], template_image, 94, 202 + 24 + 74 * (item + 2))
-        # createItemLabel(legendary_items_en[item], template_image, 94, 212 + 74 * (item + 2))
 
     template_image.save("./temp/output_file.png")
