@@ -43,11 +43,9 @@ async def on_message(message):
         random_primary_rune = randomize_primary_rune(primary_runes)
         random_rune_tree = randomize_rune_tree(random_primary_rune, rune_trees)
 
-        generate_image(random_champion, random_boots, boots_items[random_boots][0],
-                       boots_items[random_boots][1],
-                       random_mythic_item, mythic_items[random_mythic_item][0], mythic_items[random_mythic_item][1],
-                       random_legendary_items, [legendary_items[i][0] for i in random_legendary_items],
-                       [legendary_items[i][1] for i in random_legendary_items],
+        generate_image(random_champion, random_boots,
+                       random_mythic_item,
+                       random_legendary_items,
                        summoner_spells[random_summoner_spells[0]],
                        summoner_spells[random_summoner_spells[1]], random_skill_order, random_primary_rune,
                        random_rune_tree)
