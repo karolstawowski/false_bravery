@@ -1,7 +1,7 @@
 import requests
 
 
-def getLeagueOfLegendsVersion():
+def get_league_of_legends_version():
     try:
         return requests.get('https://ddragon.leagueoflegends.com/api/versions.json').json()[0]
     except requests.exceptions.RequestException:

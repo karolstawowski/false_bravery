@@ -1,7 +1,7 @@
 import random
 
 
-def randomizeSkillOrder():
+def randomize_skill_order():
     skills = ['Q', 'W', 'E']
     random.shuffle(skills)
     random.shuffle(skills)

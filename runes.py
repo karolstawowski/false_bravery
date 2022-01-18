@@ -4,7 +4,7 @@ from primaryRuneClass import PrimaryRune
 from runeTreeClass import RuneTree
 
 
-def getRunesFromApi(lol_version):
+def get_runes_from_api(lol_version):
     primary_runes = []
     rune_trees = []
 
@@ -23,11 +23,11 @@ def getRunesFromApi(lol_version):
     return [primary_runes, rune_trees]
 
 
-def randomizePrimaryRune(runes_list):
+def randomize_primary_rune(runes_list):
     return random.choice(runes_list)
 
 
-def randomizeRuneTree(random_primary_rune, rune_trees_list):
+def randomize_rune_tree(random_primary_rune, rune_trees_list):
     random_rune_tree = random.choice(rune_trees_list)
     while random_primary_rune.tree == random_rune_tree.key:
         random_rune_tree = random.choice(rune_trees_list)

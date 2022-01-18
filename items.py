@@ -2,7 +2,7 @@ import random
 import requests
 
 
-def getItemsFromApi(lol_version):
+def get_items_from_api(lol_version):
     mythic_items = {}
     legendary_items = {}
     boots_items = {}
@@ -29,15 +29,15 @@ def getItemsFromApi(lol_version):
     return [mythic_items, legendary_items, boots_items]
 
 
-def randomizeBoots(boots_dictionary):
+def randomize_boots(boots_dictionary):
     return random.choice(list(boots_dictionary.keys()))
 
 
-def randomizeMythicItem(mythic_items_dictionary):
+def randomize_mythic_item(mythic_items_dictionary):
     return random.choice(list(mythic_items_dictionary.keys()))
 
 
-def randomizeLegendaryItems(legendary_items_dictionary):
+def randomize_legendary_items(legendary_items_dictionary):
     random_legendary_items = []
     i = 0
     while i < 4:
