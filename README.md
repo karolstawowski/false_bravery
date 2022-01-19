@@ -6,6 +6,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.0.0-3993fa) <br>
 
 ## Description
+
 False Bravery is a Discord Bot for League of Legends players which creates an image with random champion, summoner spells, items and skill order and sends it to the Discord channel.
 
 ## Installation
@@ -26,7 +27,8 @@ git clone https://github.com/karolstawowski/false_bravery.git
 
 4. Use !aramki to get a random build!
 
-## App structure 
+## App structure
+
 ```bash
 📦Python Discord Bot
  ┣ 📂assets
@@ -35,8 +37,11 @@ git clone https://github.com/karolstawowski/false_bravery.git
  ┃ ┗ 📜template.png
  ┣ 📜.gitignore
  ┣ 📜apiImageHandling.py
+ ┣ 📜botPassword.py
+ ┣ 📜bot_password.txt
  ┣ 📜champions.py
  ┣ 📜images.py
+ ┣ 📜itemClass.py
  ┣ 📜items.py
  ┣ 📜leagueOfLegendsVersion.py
  ┣ 📜LICENSE
@@ -47,12 +52,15 @@ git clone https://github.com/karolstawowski/false_bravery.git
  ┣ 📜runes.py
  ┣ 📜runeTreeClass.py
  ┣ 📜skills.py
+ ┣ 📜sslHandling.py
  ┣ 📜summonerSpellClass.py
  ┗ 📜summonerSpells.py
 ```
 
 ## Resources
+
 <a href="https://developer.riotgames.com/docs/lol">Riot Games API</a>, <a href="https://pillow.readthedocs.io/en/stable/">Python Imaging Library</a>
 
 ## Tools and technologies used
+
 Python, pip, Python Imaging Library (PIL)
