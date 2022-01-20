@@ -1,6 +1,8 @@
 import random
-import requests
+from apiHandling import get_json_from_api
+from dataTypeClass import Data_type
 from itemClass import Item
+from localeClass import Locale
 
 
 def get_items_from_api(lol_version: str) -> list:
@@ -8,11 +10,8 @@ def get_items_from_api(lol_version: str) -> list:
     legendary_items = []
     boots_items = []
 
-    response_en = requests.get(f"http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/en_US/item.json")
-    response_pl = requests.get(f"http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/pl_PL/item.json")
-
-    resp_en = response_en.json()['data']
-    resp_pl = response_pl.json()['data']
+    resp_en = get_json_from_api(lol_version, Data_type.item, Locale.en_US)
+    resp_pl = get_json_from_api(lol_version, Data_type.item, Locale.pl_PL)
 
     for id in resp_en:
         if 'into' not in resp_en[id] and 'from' in resp_en[id] and "Consumable" not in resp_en[id]['tags'] and \

@@ -1,6 +1,10 @@
 import os
 import urllib.request
+import requests
 from PIL import Image
+
+from dataTypeClass import Data_type
+from localeClass import Locale
 
 
 def get_image_from_api(source: str, source_type: str) -> Image:
@@ -29,3 +33,16 @@ def convert_png_to_jpg(image_name: str, png_image: Image, size: tuple, backgroun
     new_image.paste(png_image, (0, 0), png_image)
     new_image.convert('RGB').save(f'./temp/runes/{image_name}.jpg')
     return new_image
+
+
+def get_json_from_api(lol_version: str, data_type: Data_type, locale: Locale):
+    try:
+        response = requests.get(
+            f"http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/{locale.value}/{data_type.value}.json")
+        response.raise_for_status()
+    except requests.exceptions.ConnectionError:
+        raise
+    except requests.exceptions.RequestException:
+        raise
+
+    return response.json() if data_type == Data_type.rune else response.json()['data']

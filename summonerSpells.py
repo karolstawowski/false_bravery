@@ -1,16 +1,15 @@
-import requests
 import random
+from apiHandling import get_json_from_api
+from dataTypeClass import Data_type
+from localeClass import Locale
 from summonerSpellClass import SummonerSpell
 
 
 def get_summoner_spells_from_api(lol_version: str) -> dict:
     summoner_spells = {}
 
-    response_en = requests.get(f"http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/en_US/summoner.json")
-    response_pl = requests.get(f"http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/pl_PL/summoner.json")
-
-    resp_en = response_en.json()['data']
-    resp_pl = response_pl.json()['data']
+    resp_en = get_json_from_api(lol_version, Data_type.summoner_spell, Locale.en_US)
+    resp_pl = get_json_from_api(lol_version, Data_type.summoner_spell, Locale.pl_PL)
 
     for id in resp_en:
         if 'CLASSIC' in resp_en[id]['modes'] and resp_en[id]['name'] != 'Smite':

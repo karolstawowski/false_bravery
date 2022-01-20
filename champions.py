@@ -1,15 +1,13 @@
 import random
-import requests
+from apiHandling import get_json_from_api
+from dataTypeClass import Data_type
+from localeClass import Locale
 
 
 def get_champions_from_api(lol_version: str) -> list:
-    response_en = requests.get(f"http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/en_US/champion.json")
+    resp_en = get_json_from_api(lol_version, Data_type.champion, Locale.en_US)
 
-    resp_en = response_en.json()['data']
-
-    champions = [id for id in resp_en]
-
-    return champions
+    return [id for id in resp_en]
 
 
 def randomize_champion(champions_list: list) -> str:

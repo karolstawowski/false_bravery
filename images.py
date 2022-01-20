@@ -1,6 +1,6 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
-from apiImageHandling import get_image_from_api, get_rune_image_from_api
+from apiHandling import get_image_from_api, get_rune_image_from_api
 from itemClass import Item
 from primaryRuneClass import PrimaryRune
 from runeTreeClass import RuneTree

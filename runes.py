@@ -1,5 +1,7 @@
-import requests
 import random
+from apiHandling import get_json_from_api
+from dataTypeClass import Data_type
+from localeClass import Locale
 from primaryRuneClass import PrimaryRune
 from runeTreeClass import RuneTree
 
@@ -8,9 +10,7 @@ def get_runes_from_api(lol_version: str) -> list:
     primary_runes = []
     rune_trees = []
 
-    response_en = requests.get(f'http://ddragon.leagueoflegends.com/cdn/{lol_version}/data/en_US/runesReforged.json')
-
-    resp_en = response_en.json()
+    resp_en = get_json_from_api(lol_version, Data_type.rune, Locale.en_US)
 
     for tree in resp_en:
         rune_trees.append(RuneTree(tree['name'], tree['icon']))
