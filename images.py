@@ -41,7 +41,7 @@ def create_item_label(item_label: str, template_image: Image, x_axis: int, y_axi
 
 def generate_image(champion: str, boots_item: Item, mythic_item: Item, legendary_items: list,
                    summoner_spell_1: SummonerSpell, summoner_spell_2: SummonerSpell, skill_order: list,
-                   primary_rune: PrimaryRune, rune_tree: RuneTree):
+                   primary_rune: PrimaryRune, rune_tree: RuneTree, lol_version: str):
     item_image_size = 64
     champion_image_size = 120
     line_height = 20
@@ -52,11 +52,11 @@ def generate_image(champion: str, boots_item: Item, mythic_item: Item, legendary
 
     # Get images
 
-    champion_image = get_image_from_api(champion, 'champion')
-    boots_image = get_image_from_api(boots_item.id, 'item')
-    mythic_item_image = get_image_from_api(mythic_item.id, 'item')
-    legendary_items_images = [get_image_from_api(item.id, 'item') for item in legendary_items]
-    summoner_spell_images = get_image_from_api('spell0', 'sprite')
+    champion_image = get_image_from_api(champion, 'champion', lol_version)
+    boots_image = get_image_from_api(boots_item.id, 'item', lol_version)
+    mythic_item_image = get_image_from_api(mythic_item.id, 'item', lol_version)
+    legendary_items_images = [get_image_from_api(item.id, 'item', lol_version) for item in legendary_items]
+    summoner_spell_images = get_image_from_api('spell0', 'sprite', lol_version)
     rune_image = get_rune_image_from_api(primary_rune.key, primary_rune.image_link, (64, 64), (0, 0, 0))
     rune_tree_image = get_rune_image_from_api(rune_tree.key, rune_tree.image_link, (48, 48), (60, 60, 60))
 

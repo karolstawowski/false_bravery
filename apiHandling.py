@@ -2,17 +2,16 @@ import os
 import urllib.request
 import requests
 from PIL import Image
-
 from dataTypeClass import Data_type
 from localeClass import Locale
 
 
-def get_image_from_api(source: str, source_type: str) -> Image:
+def get_image_from_api(source: str, source_type: str, lol_version: str) -> Image:
     if os.path.isfile(f'./temp/{source_type}/{source}.png'):
         return Image.open(f'./temp/{source_type}/{source}.png')
     if not os.path.isdir(f'./temp/{source_type}'):
         os.mkdir(f'./temp/{source_type}')
-    urllib.request.urlretrieve(f'http://ddragon.leagueoflegends.com/cdn/12.1.1/img/{source_type}/{source}.png',
+    urllib.request.urlretrieve(f'http://ddragon.leagueoflegends.com/cdn/{lol_version}/img/{source_type}/{source}.png',
                                f'./temp/{source_type}/{source}.png')
     return Image.open(f'./temp/{source_type}/{source}.png')
 
