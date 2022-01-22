@@ -1,4 +1,3 @@
-import os
 import discord
 from botPassword import get_bot_password
 from champions import randomize_champion
@@ -7,6 +6,7 @@ from items import randomize_legendary_items, randomize_boots, randomize_mythic_i
 from runes import randomize_primary_rune, randomize_rune_tree
 from skills import randomize_skill_order
 from summonerSpells import randomize_summoner_spells
+from config import league_of_legends_version
 
 
 def runDiscordBot(mythic_items, legendary_items, boots_items, champions, summoner_spells, primary_runes, rune_trees):
@@ -38,7 +38,7 @@ def runDiscordBot(mythic_items, legendary_items, boots_items, champions, summone
                            random_legendary_items,
                            summoner_spells[random_summoner_spells[0]],
                            summoner_spells[random_summoner_spells[1]], random_skill_order, random_primary_rune,
-                           random_rune_tree, os.environ["LOL_VERSION"])
+                           random_rune_tree, league_of_legends_version)
 
             await message.reply(file=discord.File("./temp/output_file.png"))
 

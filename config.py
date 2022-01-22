@@ -1,0 +1,3 @@
+from leagueOfLegendsVersion import get_league_of_legends_version
+
+league_of_legends_version = get_league_of_legends_version()
