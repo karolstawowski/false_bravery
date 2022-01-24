@@ -1,5 +1,4 @@
 import discord
-from bot_password import get_bot_password
 from champions import randomize_champion
 from images import generate_image
 from items import randomize_legendary_items, randomize_boots, randomize_mythic_item
@@ -7,6 +6,10 @@ from runes import randomize_primary_rune, randomize_rune_tree
 from skills import randomize_skill_order
 from summoner_spells import randomize_summoner_spells
 from config import league_of_legends_version
+
+
+def get_bot_password():
+    return open('bot_password.txt', 'r').read()
 
 
 def runDiscordBot(mythic_items, legendary_items, boots_items, champions, summoner_spells, primary_runes, rune_trees):
