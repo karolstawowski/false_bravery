@@ -1,7 +1,7 @@
 import random
-from apiHandling import get_json_from_api
-from dataTypeClass import Data_type
-from localeClass import Locale
+from api_handling import get_json_from_api
+from data_type_class import Data_type
+from locale_class import Locale
 
 
 def get_champions_from_api(lol_version: str) -> list:

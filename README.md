@@ -36,25 +36,25 @@ git clone https://github.com/karolstawowski/false_bravery.git
  ┃ ┣ 📜Roboto-Regular.ttf
  ┃ ┗ 📜template.png
  ┣ 📜.gitignore
- ┣ 📜apiHandling.py
- ┣ 📜botPassword.py
+ ┣ 📜api_handling.py
+ ┣ 📜bot_password.py
  ┣ 📜bot_password.txt
  ┣ 📜champions.py
  ┣ 📜images.py
- ┣ 📜itemClass.py
+ ┣ 📜item_class.py
  ┣ 📜items.py
- ┣ 📜leagueOfLegendsVersion.py
+ ┣ 📜league_of_legends_version.py
  ┣ 📜LICENSE
  ┣ 📜main.py
- ┣ 📜primaryRuneClass.py
+ ┣ 📜primary_rune_class.py
  ┣ 📜README.md
  ┣ 📜requirements.txt
  ┣ 📜runes.py
- ┣ 📜runeTreeClass.py
+ ┣ 📜rune_tree_class.py
  ┣ 📜skills.py
- ┣ 📜sslHandling.py
- ┣ 📜summonerSpellClass.py
- ┗ 📜summonerSpells.py
+ ┣ 📜ssl_handling.py
+ ┣ 📜summoner_spell_class.py
+ ┗ 📜summoner_spells.py
 ```
 
 ## Resources

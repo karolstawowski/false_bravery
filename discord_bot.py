@@ -1,11 +1,11 @@
 import discord
-from botPassword import get_bot_password
+from bot_password import get_bot_password
 from champions import randomize_champion
 from images import generate_image
 from items import randomize_legendary_items, randomize_boots, randomize_mythic_item
 from runes import randomize_primary_rune, randomize_rune_tree
 from skills import randomize_skill_order
-from summonerSpells import randomize_summoner_spells
+from summoner_spells import randomize_summoner_spells
 from config import league_of_legends_version
 
 

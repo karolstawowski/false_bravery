@@ -1,8 +1,8 @@
 import random
-from apiHandling import get_json_from_api
-from dataTypeClass import Data_type
-from itemClass import Item
-from localeClass import Locale
+from api_handling import get_json_from_api
+from data_type_class import Data_type
+from item_class import Item
+from locale_class import Locale
 
 
 def get_items_from_api(lol_version: str) -> list:

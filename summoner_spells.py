@@ -1,8 +1,8 @@
 import random
-from apiHandling import get_json_from_api
-from dataTypeClass import Data_type
-from localeClass import Locale
-from summonerSpellClass import SummonerSpell
+from api_handling import get_json_from_api
+from data_type_class import Data_type
+from locale_class import Locale
+from summoner_spell_class import SummonerSpell
 
 
 def get_summoner_spells_from_api(lol_version: str) -> dict:

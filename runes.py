@@ -1,9 +1,9 @@
 import random
-from apiHandling import get_json_from_api
-from dataTypeClass import Data_type
-from localeClass import Locale
-from primaryRuneClass import PrimaryRune
-from runeTreeClass import RuneTree
+from api_handling import get_json_from_api
+from data_type_class import Data_type
+from locale_class import Locale
+from primary_rune_class import PrimaryRune
+from rune_tree_class import RuneTree
 
 
 def get_runes_from_api(lol_version: str) -> list:

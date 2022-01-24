@@ -1,10 +1,10 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
-from apiHandling import get_image_from_api, get_rune_image_from_api
-from itemClass import Item
-from primaryRuneClass import PrimaryRune
-from runeTreeClass import RuneTree
-from summonerSpellClass import SummonerSpell
+from api_handling import get_image_from_api, get_rune_image_from_api
+from item_class import Item
+from primary_rune_class import PrimaryRune
+from rune_tree_class import RuneTree
+from summoner_spell_class import SummonerSpell
 
 
 def create_temp_directory():

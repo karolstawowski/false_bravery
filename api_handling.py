@@ -2,8 +2,8 @@ import os
 import urllib.request
 import requests
 from PIL import Image
-from dataTypeClass import Data_type
-from localeClass import Locale
+from data_type_class import Data_type
+from locale_class import Locale
 
 
 def get_image_from_api(source: str, source_type: str, lol_version: str) -> Image:
