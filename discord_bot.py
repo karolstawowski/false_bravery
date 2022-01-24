@@ -5,7 +5,7 @@ from items import randomize_legendary_items, randomize_boots, randomize_mythic_i
 from runes import randomize_primary_rune, randomize_rune_tree
 from skills import randomize_skill_order
 from summoner_spells import randomize_summoner_spells
-from config import league_of_legends_version
+from config import LEAGUE_OF_LEGENDS_VERSION
 
 
 def get_bot_password():
@@ -41,7 +41,7 @@ def runDiscordBot(mythic_items, legendary_items, boots_items, champions, summone
                            random_legendary_items,
                            summoner_spells[random_summoner_spells[0]],
                            summoner_spells[random_summoner_spells[1]], random_skill_order, random_primary_rune,
-                           random_rune_tree, league_of_legends_version)
+                           random_rune_tree, LEAGUE_OF_LEGENDS_VERSION)
 
             await message.reply(file=discord.File("./temp/output_file.png"))
 
