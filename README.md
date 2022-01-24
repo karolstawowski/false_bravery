@@ -30,7 +30,7 @@ git clone https://github.com/karolstawowski/false_bravery.git
 ## App structure
 
 ```bash
-📦Python Discord Bot
+📦false_bravery
  ┣ 📂assets
  ┃ ┣ 📜Roboto-Bold.ttf
  ┃ ┣ 📜Roboto-Regular.ttf
