@@ -37,14 +37,17 @@ git clone https://github.com/karolstawowski/false_bravery.git
  ┃ ┗ 📜template.png
  ┣ 📜.gitignore
  ┣ 📜api_handling.py
- ┣ 📜bot_password.py
  ┣ 📜bot_password.txt
  ┣ 📜champions.py
+ ┣ 📜config.py
+ ┣ 📜data_type_class.py
+ ┣ 📜discord_bot.py
  ┣ 📜images.py
- ┣ 📜item_class.py
  ┣ 📜items.py
+ ┣ 📜item_class.py
  ┣ 📜league_of_legends_version.py
  ┣ 📜LICENSE
+ ┣ 📜locale_class.py
  ┣ 📜main.py
  ┣ 📜primary_rune_class.py
  ┣ 📜README.md
@@ -53,8 +56,8 @@ git clone https://github.com/karolstawowski/false_bravery.git
  ┣ 📜rune_tree_class.py
  ┣ 📜skills.py
  ┣ 📜ssl_handling.py
- ┣ 📜summoner_spell_class.py
- ┗ 📜summoner_spells.py
+ ┣ 📜summoner_spells.py
+ ┗ 📜summoner_spell_class.py
 ```
 
 ## Resources
