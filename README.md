@@ -21,11 +21,11 @@ git clone https://github.com/karolstawowski/false_bravery.git
 
 1. Install all required packages using pip - their names are located in requirements.txt file
 
-2. Paste your bot password to bot_password.txt file
+2. Create bot_password.txt file and paste your bot's token into it
 
 3. Run program
 
-4. Use !aramki to get a random build!
+4. Use !aramki command in Discord text chat to get a random build!
 
 ## App structure
 
