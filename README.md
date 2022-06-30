@@ -19,13 +19,33 @@ git clone https://github.com/karolstawowski/false_bravery.git
 
 ## Usage
 
-1. Install all required packages using pip - their names are located in requirements.txt file
+1. Create virtual enviroment
 
-2. Create bot_password.txt file and paste your bot's token into it
+```
+py -m venv env
+```
 
-3. Run program
+2. Activate virtual enviroment
 
-4. Use !aramki command in Discord text chat to get a random build!
+```
+.\env\Scripts\activate
+```
+
+3. Install required packages using pip
+
+```
+py -m pip install -r requirements.txt
+```
+
+4. Create bot_password.txt file and paste your bot's token into it
+
+5. Run program
+
+```
+python main.py
+```
+
+6. Bot is ready to use! Type `!aramki` in Discord text chat to get your random build!
 
 ## App structure
 
