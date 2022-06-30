@@ -9,43 +9,43 @@
 
 False Bravery is a Discord Bot for League of Legends players which creates an image with random champion, summoner spells, items and skill order and sends it to the Discord channel.
 
-## Installation
+## Installation and usage
 
 To run False Bravery, you need to have <a href="https://www.python.org/downloads/">Python</a> and <a href="https://pip.pypa.io/en/stable/cli/pip_install/">pip</a> installed.
 
-```bash
+1. Clone github repository
+
+```
 git clone https://github.com/karolstawowski/false_bravery.git
 ```
 
-## Usage
-
-1. Create virtual enviroment
+2. Create virtual enviroment
 
 ```
 py -m venv env
 ```
 
-2. Activate virtual enviroment
+3. Activate virtual enviroment
 
 ```
 .\env\Scripts\activate
 ```
 
-3. Install required packages using pip
+4. Install required packages using pip
 
 ```
 py -m pip install -r requirements.txt
 ```
 
-4. Create bot_password.txt file and paste your bot's token into it
+5. Create bot_password.txt file and paste your bot's token into it
 
-5. Run program
+6. Run program
 
 ```
 python main.py
 ```
 
-6. Bot is ready to use! Type `!aramki` in Discord text chat to get your random build!
+7. Bot is ready to use! Type `!aramki` in Discord text chat to get your random build!
 
 ## App structure
 
