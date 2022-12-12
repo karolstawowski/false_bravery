@@ -1,7 +1,9 @@
 import os
 import urllib.request
+
 import requests
 from PIL import Image
+
 from data_type_class import Data_type
 from locale_class import Locale
 
@@ -21,7 +23,8 @@ def get_rune_image_from_api(name: str, source: str, size: tuple, background_colo
         return Image.open(f'./temp/runes/{name}.jpg')
     if not os.path.isdir(f'./temp/runes'):
         os.mkdir(f'./temp/runes')
-    urllib.request.urlretrieve(f'https://ddragon.canisback.com/img/{source}', f'./temp/runes/{name}.png')
+    urllib.request.urlretrieve(
+        f'https://ddragon.canisback.com/img/{source}', f'./temp/runes/{name}.png')
     rune_image = Image.open(f'./temp/runes/{name}.png')
     rune_image = rune_image.resize(size)
     return convert_png_to_jpg(name, rune_image, size, background_color)

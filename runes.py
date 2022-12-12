@@ -1,4 +1,5 @@
 import random
+
 from api_handling import get_json_from_api
 from data_type_class import Data_type
 from locale_class import Locale
@@ -15,7 +16,8 @@ def get_runes_from_api(lol_version: str) -> list:
     for tree in resp_en:
         rune_trees.append(RuneTree(tree['name'], tree['icon']))
         for rune in tree['slots'][0]['runes']:
-            primary_runes.append(PrimaryRune(rune['key'], rune['icon'], tree['name']))
+            primary_runes.append(PrimaryRune(
+                rune['key'], rune['icon'], tree['name']))
     return [primary_runes, rune_trees]
 
 
