@@ -1,5 +1,7 @@
 import os
+
 from PIL import Image, ImageDraw, ImageFont
+
 from api_handling import get_image_from_api, get_rune_image_from_api
 from item_class import Item
 from primary_rune_class import PrimaryRune
