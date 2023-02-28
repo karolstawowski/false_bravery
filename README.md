@@ -2,8 +2,6 @@
 
 ![Language](https://img.shields.io/badge/language-Python-3993fa)
 ![License](https://img.shields.io/github/license/karolstawowski/false_bravery?color=3993fa)
-![Number of lines](https://img.shields.io/tokei/lines/github/karolstawowski/false_bravery?color=3993fa)
-![Version](https://img.shields.io/badge/version-1.0.0.0-3993fa) <br>
 
 ## Description
 
