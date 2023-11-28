@@ -16,7 +16,9 @@ def get_bot_password():
 RUN_COMMAND_KEYWORD = "!aramki"
 
 
-def run_discord_bot(legendary_items, boots_items, champions, summoner_spells, primary_runes, rune_trees):
+def run_discord_bot(
+    legendary_items, boots_items, champions, summoner_spells, primary_runes, rune_trees
+):
     client = discord.Client()
     password = get_bot_password()
 
@@ -58,7 +60,8 @@ def run_discord_bot(legendary_items, boots_items, champions, summoner_spells, pr
         if client.user.mentioned_in(message):
             embed = discord.Embed(title="Oxygen's Bot Help")
             embed.add_field(
-                name="Available commands:", value=f"{RUN_COMMAND_KEYWORD} - generate random stuff"
+                name="Available commands:",
+                value=f"{RUN_COMMAND_KEYWORD} - generate random stuff",
             )
             embed.set_footer(text="https://github.com/karolstawowski/false_bravery")
             await message.channel.send(embed=embed)

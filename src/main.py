@@ -13,4 +13,6 @@ champions = get_champions_from_api(LEAGUE_OF_LEGENDS_VERSION)
 summoner_spells = get_summoner_spells_from_api(LEAGUE_OF_LEGENDS_VERSION)
 primary_runes, rune_trees = get_runes_from_api(LEAGUE_OF_LEGENDS_VERSION)
 
-run_discord_bot(legendary_items, boots_items, champions, summoner_spells, primary_runes, rune_trees)
+run_discord_bot(
+    legendary_items, boots_items, champions, summoner_spells, primary_runes, rune_trees
+)
