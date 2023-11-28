@@ -1,6 +1,8 @@
-/env
+.venv
+.vscode
 /.idea
 /temp
 /__pycache__
 bot_password.txt
 venv
+src/__pycache__
