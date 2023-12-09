@@ -1,10 +1,15 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
+from PIL.Image import Image as PILImage
+from PIL.ImageDraw import ImageDraw as PILImageDraw
 from api_handling import get_image_from_api, get_rune_image_from_api
 from item_class import Item
 from primary_rune_class import PrimaryRune
 from rune_tree_class import RuneTree
 from summoner_spell_class import SummonerSpell
+
+DEFAULT_FONT_SIZE = 16
+HEADING_FONT_SIZE = 20
 
 
 def create_temp_directory():
@@ -12,7 +17,7 @@ def create_temp_directory():
         os.makedirs("temp")
 
 
-def generate_template_image(template_image_path: str) -> Image:
+def generate_template_image(template_image_path: str) -> PILImage:
     if os.path.isfile(f"{template_image_path}"):
         return Image.open(f"{template_image_path}")
     image = Image.new("RGB", (370, 644), (80, 80, 80))
@@ -20,16 +25,18 @@ def generate_template_image(template_image_path: str) -> Image:
     return image
 
 
-def create_champion_label(champion_name: str, template_image: Image):
+def create_champion_label(champion_name: str, template_image: PILImage):
     draw_image = ImageDraw.Draw(template_image)
-    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 20)
-    w, h = draw_image.textsize(f"{champion_name}", font=font)
+    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", HEADING_FONT_SIZE)
     draw_image.text(
-        ((120 - w) / 2 + 20, 150), f"{champion_name}", (255, 255, 255), font=font
+        ((120 - DEFAULT_FONT_SIZE) / 2 + HEADING_FONT_SIZE, 150),
+        f"{champion_name}",
+        (255, 255, 255),
+        font=font,
     )
 
 
-def create_skill_order_label(skills_list: list, template_image: Image):
+def create_skill_order_label(skills_list: list, template_image: PILImage):
     draw_image = ImageDraw.Draw(template_image)
     font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 24)
     draw_image.text(
@@ -40,9 +47,11 @@ def create_skill_order_label(skills_list: list, template_image: Image):
     )
 
 
-def create_item_label(item_label: str, template_image: Image, x_axis: int, y_axis: int):
+def create_item_label(
+    item_label: str, template_image: PILImage, x_axis: int, y_axis: int
+):
     draw_image = ImageDraw.Draw(template_image)
-    font = ImageFont.truetype("./assets/Roboto-Regular.ttf", 16)
+    font = ImageFont.truetype("./assets/Roboto-Regular.ttf", DEFAULT_FONT_SIZE)
     draw_image.text((x_axis, y_axis), f"{item_label}", (255, 255, 255), font=font)
 
 

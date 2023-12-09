@@ -3,12 +3,12 @@ import urllib.request
 
 import requests
 from PIL import Image
-
+from PIL.Image import Image as PILImage
 from data_type_class import Data_type
 from locale_class import Locale
 
 
-def get_image_from_api(source: str, source_type: str, lol_version: str) -> Image:
+def get_image_from_api(source: str, source_type: str, lol_version: str) -> PILImage:
     if os.path.isfile(f"./temp/{source_type}/{source}.png"):
         return Image.open(f"./temp/{source_type}/{source}.png")
     if not os.path.isdir(f"./temp/{source_type}"):
@@ -21,8 +21,11 @@ def get_image_from_api(source: str, source_type: str, lol_version: str) -> Image
 
 
 def get_rune_image_from_api(
-    name: str, source: str, size: tuple, background_color: tuple
-) -> Image:
+    name: str,
+    source: str,
+    size: tuple[int, int],
+    background_color: tuple[int, int, int],
+) -> PILImage:
     if os.path.isfile(f"./temp/runes/{name}.jpg"):
         return Image.open(f"./temp/runes/{name}.jpg")
     if not os.path.isdir(f"./temp/runes"):
@@ -36,8 +39,11 @@ def get_rune_image_from_api(
 
 
 def convert_png_to_jpg(
-    image_name: str, png_image: Image, size: tuple, background_color: tuple
-) -> Image:
+    image_name: str,
+    png_image: PILImage,
+    size: tuple[int, int],
+    background_color: tuple[int, int, int],
+) -> PILImage:
     new_image = Image.new("RGBA", size, background_color)
     new_image.paste(png_image, (0, 0), png_image)
     new_image.convert("RGB").save(f"./temp/runes/{image_name}.jpg")
