@@ -20,7 +20,7 @@ git clone https://github.com/karolstawowski/false_bravery.git
 2. Create virtual enviroment
 
 ```
-py -m venv env
+py -m venv .venv
 ```
 
 3. Activate virtual enviroment
@@ -45,37 +45,20 @@ python main.py
 
 7. Bot is ready to use! Type `!aramki` in Discord text chat to get your random build!
 
-## App structure
+## Docker
 
-```bash
-📦false_bravery
- ┣ 📂assets
- ┃ ┣ 📜Roboto-Bold.ttf
- ┃ ┣ 📜Roboto-Regular.ttf
- ┃ ┗ 📜template.png
- ┣ 📜.gitignore
- ┣ 📜api_handling.py
- ┣ 📜bot_password.txt
- ┣ 📜champions.py
- ┣ 📜config.py
- ┣ 📜data_type_class.py
- ┣ 📜discord_bot.py
- ┣ 📜images.py
- ┣ 📜items.py
- ┣ 📜item_class.py
- ┣ 📜league_of_legends_version.py
- ┣ 📜LICENSE
- ┣ 📜locale_class.py
- ┣ 📜main.py
- ┣ 📜primary_rune_class.py
- ┣ 📜README.md
- ┣ 📜requirements.txt
- ┣ 📜runes.py
- ┣ 📜rune_tree_class.py
- ┣ 📜skills.py
- ┣ 📜ssl_handling.py
- ┣ 📜summoner_spells.py
- ┗ 📜summoner_spell_class.py
+You can also run False Bravery using Docker. To do so, you need to have <a href="https://docs.docker.com/get-docker/">Docker</a> installed.
+
+1. Create docker image
+
+```
+docker build -t false_bravery .
+```
+
+2. Create docker container
+
+```
+docker run -d --name false_bravery false_bravery
 ```
 
 ## Resources
