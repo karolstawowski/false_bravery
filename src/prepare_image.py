@@ -7,8 +7,7 @@ from skills import randomize_skill_order
 from summoner_spells import randomize_summoner_spells
 
 
-async def send_image(
-    message,
+async def prepare_image(
     lol_version,
     legendary_items,
     boots_items,
@@ -36,5 +35,3 @@ async def send_image(
         random_rune_tree,
         lol_version,
     )
-
-    return await message.reply(file=discord.File("./temp/output_file.png"))

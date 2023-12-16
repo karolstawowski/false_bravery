@@ -13,8 +13,8 @@ HEADING_FONT_SIZE = 20
 
 
 def create_temp_directory():
-    if not os.path.exists("temp"):
-        os.makedirs("temp")
+    if not os.path.exists("../temp"):
+        os.makedirs("../temp")
 
 
 def generate_template_image(template_image_path: str) -> PILImage:
@@ -27,7 +27,7 @@ def generate_template_image(template_image_path: str) -> PILImage:
 
 def create_champion_label(champion_name: str, template_image: PILImage):
     draw_image = ImageDraw.Draw(template_image)
-    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", HEADING_FONT_SIZE)
+    font = ImageFont.truetype("../assets/Roboto-Bold.ttf", HEADING_FONT_SIZE)
     draw_image.text(
         ((120 - DEFAULT_FONT_SIZE) / 2 + HEADING_FONT_SIZE, 150),
         f"{champion_name}",
@@ -38,7 +38,7 @@ def create_champion_label(champion_name: str, template_image: PILImage):
 
 def create_skill_order_label(skills_list: list, template_image: PILImage):
     draw_image = ImageDraw.Draw(template_image)
-    font = ImageFont.truetype("./assets/Roboto-Bold.ttf", 24)
+    font = ImageFont.truetype("../assets/Roboto-Bold.ttf", 24)
     draw_image.text(
         (240, 102),
         f"{skills_list[0]} > {skills_list[1]} > {skills_list[2]} ",
@@ -51,7 +51,7 @@ def create_item_label(
     item_label: str, template_image: PILImage, x_axis: int, y_axis: int
 ):
     draw_image = ImageDraw.Draw(template_image)
-    font = ImageFont.truetype("./assets/Roboto-Regular.ttf", DEFAULT_FONT_SIZE)
+    font = ImageFont.truetype("../assets/Roboto-Regular.ttf", DEFAULT_FONT_SIZE)
     draw_image.text((x_axis, y_axis), f"{item_label}", (255, 255, 255), font=font)
 
 
@@ -83,7 +83,10 @@ def generate_image(
     ]
     summoner_spell_images = get_image_from_api("spell0", "sprite", lol_version)
     rune_image = get_rune_image_from_api(
-        primary_rune.key, primary_rune.image_link, (64, 64), (0, 0, 0)
+        primary_rune.key,
+        primary_rune.image_link,
+        (item_image_size, item_image_size),
+        (0, 0, 0),
     )
     rune_tree_image = get_rune_image_from_api(
         rune_tree.key, rune_tree.image_link, (48, 48), (60, 60, 60)
@@ -91,7 +94,7 @@ def generate_image(
 
     # Prepare template image
 
-    template_image = generate_template_image("./assets/template.png")
+    template_image = generate_template_image("../assets/template.png")
 
     # Insert images
 
@@ -166,4 +169,4 @@ def generate_image(
             202 + 24 + 74 * (item + 1),
         )
 
-    template_image.save("./temp/output_file.png")
+    template_image.save("../temp/output_file.png")
